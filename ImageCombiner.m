@@ -7,7 +7,7 @@
 % Author: Peter Bier
 clear
 clc
-clf
+clf %!! clear figures
 
 % Determine whether we are processing movies or images from a directory
 response = ''; % for testing purpose you may like to hard code the response to m or i here
@@ -23,10 +23,9 @@ if strncmp(response,'m',1)
     % or the matlab path for Matlab to find it.
     
     % Get the filename from the user, note that Matlab comes with a movie
-    % file called xylophone.mp4 and hitting enter will default the name to
-    % this
+    % file called xylophone.mp4 and hitting enter will default the name to this
     filename = input('Please enter the name of the video file (or hit enter to default to xylophone.mp4:','s');
-    if length(filename) == 0
+    if isempty(filename) %! change from length to isempty
         filename='xylophone.mp4';
     end
     
@@ -38,12 +37,11 @@ if strncmp(response,'m',1)
     % Generate the list of frames to extract from the move
     % You will need to implement GenerateFrameList
     frameNumbers = GenerateFrameList(firstFrame,stepSize,numFrames);
-    % Extract the list of frames from the movie using the supplied
-    % ReadFrames function
+    % Extract the list of frames from the movie using the supplied ReadFrames function
     images = ReadFrames(filename,frameNumbers);
     
-    % create names from the frame numbers, useful when displaying the
-    % images
+    % create names from the frame numbers, useful when displaying the images
+    imageNames = cell(1, length(frameNumbers)); %! preallocate the cell array
     for i=1:length(frameNumbers)
         imageNames{i} = ['Frame ' num2str(frameNumbers(i))];
     end
@@ -61,25 +59,15 @@ else
     % Read in the list of specified images
     % You will need to implement ReadImages
     images = ReadImages(dirname,imageNames);
-    
-    % For convenience you may like to comment out the calls to
-    % GenerateImageList and ReadImages
-    % function above and temporarily assign some values for images
-    
-    % ImageNames = {'pesky01.png','pesky02.png','pesky03.png'};
-    % images{1} = imread('pesky\pesky01.png')
-    % images{2} = imread('pesky\pesky02.png')
-    % images{3} = imread('pesky\pesky03.png')
 end
 
-% Display the fetched images on figure 1 using the supplied DisplayImages
-% function
+% Display the fetched images on figure 1 using the supplied DisplayImages function
 DisplayImages(1,images, imageNames);
 
 % Remove unwanted data from the sequence of images
 % Display the resulting image and write it to a file
 staticImage = RemoveAction(images);
-figure(2)
+figure(2);
 image(staticImage);
 title('Image with object removed');
 imwrite(staticImage,'actionRemoved.png');
