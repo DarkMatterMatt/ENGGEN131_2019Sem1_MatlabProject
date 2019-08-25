@@ -8,9 +8,10 @@
 clear
 clc
 clf %!! clear figures
+tic % start stopwatch
 
 % Determine whether we are processing movies or images from a directory
-response = ''; % for testing purpose you may like to hard code the response to m or i here
+response = 'm'; % for testing purpose you may like to hard code the response to m or i here
 while ~(strncmp(response,'m',1) || strncmp(response,'i',1))
     disp('What would you like to process?');
     response = lower(input('Enter m for movie frames or i for images from a directory:','s'));
@@ -24,15 +25,15 @@ if strncmp(response,'m',1)
     
     % Get the filename from the user, note that Matlab comes with a movie
     % file called xylophone.mp4 and hitting enter will default the name to this
-    filename = input('Please enter the name of the video file (or hit enter to default to xylophone.mp4:','s');
+    filename = 'xylophone.mp4';%input('Please enter the name of the video file (or hit enter to default to xylophone.mp4:','s');
     if isempty(filename) %! change from length to isempty
         filename='xylophone.mp4';
     end
     
     % Get the frame information from the user
-    firstFrame = input('Please enter the first frame you want to fetch:');
-    stepSize = input('Please enter the step size you want to use:');
-    numFrames = input('Please enter the number of frames to fetch:');
+    firstFrame = 10;%input('Please enter the first frame you want to fetch:');
+    stepSize = 20;%input('Please enter the step size you want to use:');
+    numFrames = 5;%input('Please enter the number of frames to fetch:');
     
     % Generate the list of frames to extract from the move
     % You will need to implement GenerateFrameList
@@ -49,8 +50,8 @@ else
     % We are not reading movies, so must be reading images from a directory    
     
     % Determine the directory to use and the file type to fetch
-    dirname = input('Please enter the name of the directory:','s');
-    fileType = input('Please enter the three letter file type, e.g. jpg or png:','s');
+    dirname = 'lunar';%input('Please enter the name of the directory:','s');
+    fileType = 'jpg';%input('Please enter the three letter file type, e.g. jpg or png:','s');
     
     % Create a list of images to read
     % You will need to implement GenerateImageList
@@ -80,3 +81,6 @@ image(actionImage);
 
 title('Action shot');
 imwrite(actionImage,'actionShot.png');
+
+% display elapsed time
+toc

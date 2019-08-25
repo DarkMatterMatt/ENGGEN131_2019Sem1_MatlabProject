@@ -1,0 +1,13 @@
+This machine (results from Matlab R2019a `bench` command):
+    LU      0.4416
+    FFT     0.1091
+    ODE     0.0230
+    Sparse  0.1300
+    2-D     1.0115
+    3-D     0.6812
+    
+filename=xylophone.mp4, firstFrame=10, stepSize=20, numFrames=5
+16.523970
+
+dirname=lunar, filetype=jpg
+157.982264
