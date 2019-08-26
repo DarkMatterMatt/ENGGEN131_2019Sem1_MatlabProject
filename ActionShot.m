@@ -1,17 +1,14 @@
 function output = ActionShot(images)
-    numImages = length(images); 
+    numImages = length(images);
     [numY, numX, ~] = size(images{1});
+    matrixNumX = numX * numImages;
     
+    images = cell2mat(images);
     output = zeros(numY, numX, 3, 'uint8');
 
     for y = 1:numY
         for x = 1:numX
-            pixels = zeros(1, numImages, 3);
-            for i=1:numImages
-                image = images{i};
-                pixels(1, i, :) = image(y, x, :);
-            end
-            [r, g, b] = MostDistantPixel(pixels);
+            [r, g, b] = MostDistantPixel(images(y, x:numX:matrixNumX, :));
             output(y, x, :) = [r g b];
         end
     end
