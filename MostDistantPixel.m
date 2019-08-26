@@ -1,19 +1,12 @@
 function [r, g, b] = MostDistantPixel(pixels)
+    p = double(pixels);
+    m = round(median(p));
 
-    [mR, mG, mB] = MedianPixel(pixels);
-    maxDistance = -1;
+    distances = sum((p-m).^2, 3);
+    [~, index] = max(distances);
+    mostDistantPixel = p(:, index, :);
     
-    for i=1:length(pixels)
-        pixel = pixels(1, i, :);
-        distance = PixelDistance([mR; mG; mB], pixel(:));
-        
-        % if this is the most distance pixel (so far), save it
-        if distance > maxDistance
-            maxDistance = distance;
-            r = pixel(1);
-            g = pixel(2);
-            b = pixel(3);
-        end
-    end
-
+    r = mostDistantPixel(1);
+    g = mostDistantPixel(2);
+    b = mostDistantPixel(3);
 end
