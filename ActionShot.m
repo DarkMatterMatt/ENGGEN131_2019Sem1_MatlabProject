@@ -4,21 +4,20 @@ function output = ActionShot(images)
     [numY, numX, ~] = size(images{1});
     output = zeros(numY, numX, 3, 'uint8');
     
-    images = cellfun( @(x)reshape(x,numY,1,numX,3) ,images,'un',0); % what does this do?
-    images = permute(cell2mat(images), [2 1 3 4]);
-    images = double(images);
+    % convert to a 4D matrix
+    images = cat(4, images{:});
     
-    medianImage = reshape(gMedianImage, [1, numY, numX, 3]);
-    medianImage = double(medianImage);
+    images = double(images);
+    medianImage = double(gMedianImage);
 
     for y = 1:numY
         for x = 1:numX
-            p = images(:, y, x, :);
-            m = medianImage(1, y, x, :);
+            p = images(y, x, :, :);
+            m = medianImage(y, x, :);
             
             distances = sum((p-m).^2, 4);
             [~, index] = max(distances);
-            output(y, x, :) = p(index, 1, 1, :);
+            output(y, x, :) = p(1, 1, :, index);
         end
     end
 end
