@@ -11,6 +11,6 @@ function output = RemoveAction(images)
     output = uint8(median(M, dim+1));
     
     % save so ActionShot can use result
-    global medianImage;
-    medianImage = output;
+    global gMedianImage;
+    gMedianImage = output;
 end
