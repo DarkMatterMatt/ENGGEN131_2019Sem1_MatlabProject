@@ -17,4 +17,3 @@ function [r, g, b] = MostDistantPixel(pixels)
     end
 
 end
-

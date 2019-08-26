@@ -1,8 +1,7 @@
 function [r, g, b] = MedianPixel(pixels)
-
-    r = round(median(pixels(:, :, 1)));
-    g = round(median(pixels(:, :, 2)));
-    b = round(median(pixels(:, :, 3)));
-
+    result = round(median(pixels));
+    r = result(:, :, 1);
+    g = result(:, :, 2);
+    b = result(:, :, 3);
 end
 
