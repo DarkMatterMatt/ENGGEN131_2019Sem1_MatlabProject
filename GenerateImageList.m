@@ -1,5 +1,9 @@
 function imageNames = GenerateImageList(dirName, fileType)
-    % ImageNames = {'pesky01.png','pesky02.png','pesky03.png'};
+    % Returns a cell array of all the images in the specified directory
+    % Input:    dirName  - the name of the directory containing images
+    %           fileType - the image extension (e.g. 'png', or 'jpg')
+    % Output:   a cell array of image names
+    % Author:   Matt Moran
 
     % any file that ends with fileType, e.g. *.png
     imagePattern = ['*.' fileType];

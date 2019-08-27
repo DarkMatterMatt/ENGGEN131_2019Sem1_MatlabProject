@@ -1,7 +1,11 @@
-% Generates a list of frame indexes
-% Author: Matt Moran
-% Input: 
 function frameNumbers = GenerateFrameList(firstFrame,stepSize,numFrames)
+    % Generates a array of frame indexes
+    % Input:    firstFrame  - the index of the first frame to capture
+    %           stepSize    - how many frames to skip before the next frame
+    %           numFrames   - the number of frames to create
+    % Output:   an array of frame indexes
+    % Author:   Matt Moran
+
     % calculate the index of the last frame we will return
     lastFrame = firstFrame + stepSize * (numFrames - 1);
     

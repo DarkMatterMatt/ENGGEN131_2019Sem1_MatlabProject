@@ -4,9 +4,11 @@ function [r, g, b] = MostDistantPixel(pixels)
     % Output:   [r g b] = the most distant (most different) pixel
     % Author:   Matt Moran
     
+    % increase size of pixels from uint8 to int32 (we only need to double
+    %   size to uint16 but (p-m) could be negative, so use int32 instead)
     p = double(pixels);
-    m = round(median(p));
-
+    m = median(p); % this implicitly rounds because it's an integer
+    
     distances = sum((p-m).^2, 3);
     [~, index] = max(distances);
     mostDistantPixel = p(:, index, :);
