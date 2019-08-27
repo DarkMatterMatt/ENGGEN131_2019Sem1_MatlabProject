@@ -1,4 +1,9 @@
 function output = RemoveAction(images)
+    % Combines the stack of `images`, removing the differences
+    % Input:    a cell array of images to combine
+    % Output:   the image without action
+    % Author:   Matt Moran
+    
     % Inspired by https://stackoverflow.com/questions/5197597/how-to-average-over-a-cell-array-of-arrays
     
     % ActionShot and RemoveAction both use the same median image so we save

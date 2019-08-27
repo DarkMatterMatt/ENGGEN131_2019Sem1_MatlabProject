@@ -1,7 +1,7 @@
 function output = ActionShot(images)
     % Combines the stack of `images`, keeping the differences
     % Input:    a cell array of images to combine
-    % Output:   the combined image
+    % Output:   the combined action shot image
     % Author:   Matt Moran
 
     % convert to a 4D matrix - looks like
@@ -22,9 +22,12 @@ function output = ActionShot(images)
     end
     
     % find 'most different (from median)' pixels in the stack of images
+    % int32 to avoid overflow
     subtractedImages = int32(images) - int32(gMedianImage);
-    distances = sum(subtractedImages.^2, 3); % calculate differences
-    [~, indexes] = max(distances, [], 4);    % find indexes of 'most different' pixel
+    % calculate differences
+    distances = sum(subtractedImages.^2, 3);
+    % find indexes of 'most different' pixel
+    [~, indexes] = max(distances, [], 4);
     
     % convert 2D matrix index into linear index
     % https://stackoverflow.com/questions/57649949/indexing-a-4d-array-with-a-2d-matrix-of-indicies
