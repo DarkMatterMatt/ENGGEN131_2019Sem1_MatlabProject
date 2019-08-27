@@ -7,14 +7,12 @@
 % Author: Peter Bier
 clear
 clc
-clf %!! clear figures
-tic % start stopwatch
 
 % Determine whether we are processing movies or images from a directory
-response = 'm'; % for testing purpose you may like to hard code the response to m or i here
+response = ''; % for testing purpose you may like to hard code the response to m or i here
 while ~(strncmp(response,'m',1) || strncmp(response,'i',1))
     disp('What would you like to process?');
-    response = lower(input('Enter m for movie frames or i for images from a directory:','s'));
+    response = lower(input('Enter m for movie frames or i for images from a directory: ', 's'));
 end
 
 
@@ -25,7 +23,7 @@ if strncmp(response,'m',1)
     
     % Get the filename from the user, note that Matlab comes with a movie
     % file called xylophone.mp4 and hitting enter will default the name to this
-    filename = 'xylophone.mp4';%input('Please enter the name of the video file (or hit enter to default to xylophone.mp4:','s');
+    filename = input('Please enter the name of the video file (or hit enter to default to xylophone.mp4: ', 's');
     if isempty(filename) %! change from length to isempty
         filename='xylophone.mp4';
     end
@@ -50,8 +48,8 @@ else
     % We are not reading movies, so must be reading images from a directory    
     
     % Determine the directory to use and the file type to fetch
-    dirname = 'lunar';%input('Please enter the name of the directory:','s');
-    fileType = 'jpg';%input('Please enter the three letter file type, e.g. jpg or png:','s');
+    dirname = input('Please enter the name of the directory: ', 's');
+    fileType = input('Please enter the three letter file type, e.g. jpg or png: ', 's');
     
     % Create a list of images to read
     % You will need to implement GenerateImageList
@@ -70,6 +68,9 @@ DisplayImages(1,images, imageNames);
 staticImage = RemoveAction(images);
 figure(2);
 image(staticImage);
+axis off
+axis equal
+axis tight
 title('Image with object removed');
 imwrite(staticImage,'actionRemoved.png');
 
@@ -78,9 +79,8 @@ imwrite(staticImage,'actionRemoved.png');
 actionImage = ActionShot(images);
 figure(3)
 image(actionImage);
-
+axis off
+axis equal
+axis tight
 title('Action shot');
 imwrite(actionImage,'actionShot.png');
-
-% display elapsed time
-toc
