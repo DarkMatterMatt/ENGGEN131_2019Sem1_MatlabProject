@@ -1,25 +1,19 @@
 function output = ActionShot(images)
     global gMedianImage;
     
-    [numY, numX, ~] = size(images{1});
-    output = zeros(numY, numX, 3, 'uint8');
-    
     % convert to a 4D matrix - looks like
     %   [Y, X, RGB, N] where N is the image number
     images = cat(4, images{:});
+    [numY, numX, ~, ~] = size(images);
     
-    images = double(images);
-    medianImage = double(gMedianImage);
-    
-    subtractedImages = images - medianImage;
+    subtractedImages = double(images) - double(gMedianImage);
     distances = sum(subtractedImages.^2, 3);
-    
     [~, indexes] = max(distances, [], 4);
-
-    for y = 1:numY
-        for x = 1:numX
-            output(y, x, :) = images(y, x, :, indexes(y, x));
-        end
-    end
+    
+    % https://stackoverflow.com/questions/57649949/indexing-a-4d-array-with-a-2d-matrix-of-indicies
+    linearIndex = reshape(1:numY*numX, numY, numX) ...
+        + reshape((0:2)*numY*numX, 1, 1, []) ...
+        + (indexes-1)*numY*numX*3;
+    output = images(linearIndex);
 end
 
