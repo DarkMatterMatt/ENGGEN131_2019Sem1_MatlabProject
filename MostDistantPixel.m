@@ -1,4 +1,9 @@
 function [r, g, b] = MostDistantPixel(pixels)
+    % Finds the most distant (most different) pixel from a stack of pixels
+    % Input:    an array of pixels to process
+    % Output:   [r g b] = the most distant (most different) pixel
+    % Author:   Matt Moran
+    
     p = double(pixels);
     m = round(median(p));
 

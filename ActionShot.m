@@ -1,4 +1,9 @@
 function output = ActionShot(images)
+    % Combines the stack of `images`, keeping the differences
+    % Input:    a cell array of images to combine
+    % Output:   the combined image
+    % Author:   Matt Moran
+
     % convert to a 4D matrix - looks like
     %   [Y, X, RGB, N] where N is the image number
     images = cat(4, images{:});
