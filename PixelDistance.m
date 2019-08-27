@@ -4,9 +4,9 @@ function distance = PixelDistance(p, q)
     %           q - the other pixel to compare
     % Output:   the distance between the two pixels
     % Author:   Matt Moran
-    p = double(p);
-    q = double(q);
+    p = int32(p);
+    q = int32(q);
     
-    distance = (p(1) - q(1)) ^ 2 + (p(2) - q(2)) ^ 2 + (p(3) - q(3)) ^ 2;
+    distance = sum((p-q).^2);
 end
 

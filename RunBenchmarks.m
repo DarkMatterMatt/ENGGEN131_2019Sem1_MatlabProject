@@ -1,5 +1,5 @@
 function [avgSecsImages, avgSecsMovies] = RunBenchmarks()
-    iterations = 3;
+    iterations = 5;
     
     % run once to remove setup costs
     BenchmarkImages();

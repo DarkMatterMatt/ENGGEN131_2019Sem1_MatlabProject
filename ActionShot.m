@@ -22,7 +22,7 @@ function output = ActionShot(images)
     end
     
     % find 'most different (from median)' pixels in the stack of images
-    subtractedImages = double(images) - double(gMedianImage);
+    subtractedImages = int32(images) - int32(gMedianImage);
     distances = sum(subtractedImages.^2, 3); % calculate differences
     [~, indexes] = max(distances, [], 4);    % find indexes of 'most different' pixel
     
