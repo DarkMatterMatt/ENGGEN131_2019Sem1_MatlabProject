@@ -13,7 +13,7 @@ function output = RemoveAction(images)
     % if the images are different sizes then we changed datasets
     % this will break if we change between multiple datasets with the same
     %   number of pixels (but this shouldn't be a problem for this task)
-    if numel(gMedianImage) ~= numel(images) / length(images)
+    if numel(gMedianImage) ~= numel(images{1})
         % convert images to a 4D matrix (from cell array)
         images = cat(4, images{:});
 
