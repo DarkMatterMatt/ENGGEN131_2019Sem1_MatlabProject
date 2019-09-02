@@ -7,7 +7,7 @@ function output = ActionShot(images)
     % convert to a 4D matrix - looks like
     %   [Y, X, RGB, N] where N is the image number
     images = cat(4, images{:});
-    [numY, numX, ~, ~] = size(images);
+    [numY, numX, ~, numImages] = size(images);
     
     % ActionShot and RemoveAction both use the same median image so we save
     %   it between functions
@@ -16,7 +16,7 @@ function output = ActionShot(images)
     % if the images are different sizes then we changed datasets
     % this will break if we change between multiple datasets with the same
     %   number of pixels (but this shouldn't be a problem for this task)
-    if numel(gMedianImage) ~= numel(images)
+    if numel(gMedianImage) ~= numel(images) / numImages
         % average matrix across the 4th dimension (stack of images)
         gMedianImage = median(images, 4);
     end
@@ -25,7 +25,8 @@ function output = ActionShot(images)
     % int32 to avoid overflow
     subtractedImages = int32(images) - int32(gMedianImage);
     % calculate differences
-    distances = sum(subtractedImages.^2, 3);
+    % sI.*sI is 64% faster than sI.^2
+    distances = sum(subtractedImages .* subtractedImages, 3);
     % find indexes of 'most different' pixel
     [~, indexes] = max(distances, [], 4);
     

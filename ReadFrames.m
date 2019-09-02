@@ -1,23 +1,20 @@
-function [frames] = ReadFrames(fileName,frameNumbers)
+function frames = ReadFrames(fileName, frameNumbers)
     % Takes a a movie file name, 1D array of frames to fetch, 
     % and returns a cell array of RGB images.
-    % Author: Peter Bier
+    % Author: Peter Bier. Modified by Matt Moran
 
     % Create a video object for the video
     vidObj = VideoReader(fileName);
-    frameCount = 0;
 
-    % Iterate through the frame numbers and store the specified frames.
-    frames = cell(1, length(frameNumbers)); %! preallocate the cell array
+    % preallocate the cell array
+    frames = cell(1, length(frameNumbers));
 
-    %! this is really unoptimised, should read all the frames on one pass through the file
+    % Iterate through the frame numbers and store the specified frames
     for i=1:length(frameNumbers)
-        frameToFetch = frameNumbers(i);
-        while frameToFetch > frameCount    
-            currentFrame = readFrame(vidObj);
-            frameCount = frameCount + 1;
-        end
-        frames{i} = currentFrame;
+        % jump to the frame we want to read
+        vidObj.CurrentTime = (frameNumbers(i)-1) / vidObj.FrameRate;
+        frames{i} = readFrame(vidObj);
     end
+    
 end
 
