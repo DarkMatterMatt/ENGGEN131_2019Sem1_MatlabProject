@@ -31,6 +31,11 @@ function output = ActionShot(images)
     
     % convert 2D matrix index into linear index
     % https://stackoverflow.com/questions/57649949/indexing-a-4d-array-with-a-2d-matrix-of-indicies
+    % line 40: creates a 2D array (for a 2x4 image, ans=[1 3 5 7; 2 4 6 8]
+    % line 41: creates a 3D (for a 2x4 image, ans=[0 8 16] in the 3rd dimension)
+    % line 42: makes `indexes` zero-based, then multiplies it by the total number of pixels in each layer
+    % line 40 + 41: added together to get a unique index for each color component for each pixel
+    % line 40 + 41 + 42: added together to get the indexes for each pixel which we want to select
     numPixels = numY*numX;
     linearIndex = reshape(1:numPixels, numY, numX) ...
         + reshape((0:2)*numPixels, 1, 1, []) ...
