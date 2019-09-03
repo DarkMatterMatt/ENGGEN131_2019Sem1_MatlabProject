@@ -6,11 +6,11 @@ function distance = PixelDistance(p, q)
     % Author:   Matt Moran
     
     % increase size of pixels from uint8 to int32 (we only need to double
-    %   size to uint16 but (p-m) could be negative, so use int32 instead)
-    p = int32(p);
-    q = int32(q);
+    %   size to uint16 but (p-q) could be negative, so use int32 instead)
+    difference = int32(p) - int32(q);
     
     % calculate the distances between the pixels
-    distance = sum((p-q).^2);
+    % d.*d is ~30% faster than d.^2 for this small array
+    distance = sum(difference .* difference);
 end
 
