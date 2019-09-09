@@ -1,0 +1,5 @@
+Copy these files into your Matlab project folder
+Run each test
+
+The function 'assert(x == y)' checks that x is equal to y and makes an error if it isn't
+So if you get an error it is because your function did not provide the expected output
