@@ -1,7 +1,7 @@
 function [r, g, b] = MostDistantPixel(pixels)
     % Finds the most distant (most different) pixel from a stack of pixels
     % Input:    an array of pixels to process
-    % Output:   [r g b] = the most distant (most different) pixel
+    % Outputs:  [r g b] = the most distant (most different) pixel
     % Author:   Matt Moran
     
     % increase size of pixels from uint8 to int32 (we only need to double

@@ -1,5 +1,5 @@
 function output = ActionShot(images)
-    % Combines the stack of `images`, keeping the differences
+    % Combines the stack of images, keeping the differences
     % Input:    a cell array of images to combine
     % Output:   the combined action shot image
     % Author:   Matt Moran

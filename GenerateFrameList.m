@@ -1,5 +1,5 @@
-function frameNumbers = GenerateFrameList(firstFrame,stepSize,numFrames)
-    % Generates a array of frame indexes
+function frameNumbers = GenerateFrameList(firstFrame, stepSize, numFrames)
+    % Generates an array of frame indexes
     % Input:    firstFrame  - the index of the first frame to capture
     %           stepSize    - how many frames to skip before the next frame
     %           numFrames   - the number of frames to create

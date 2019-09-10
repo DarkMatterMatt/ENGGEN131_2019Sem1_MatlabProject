@@ -1,5 +1,5 @@
 function output = RemoveAction(images)
-    % Combines the stack of `images`, removing the differences
+    % Combines the stack of images, removing the differences
     % Input:    a cell array of images to combine
     % Output:   the image without action
     % Author:   Matt Moran

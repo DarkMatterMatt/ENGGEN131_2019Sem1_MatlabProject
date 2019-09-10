@@ -1,7 +1,7 @@
 function [r, g, b] = MedianPixel(pixels)
     % Finds the average (median) pixel from a stack of pixels
     % Input:    an array of pixels to process
-    % Output:   [r g b] = the average (median) pixel
+    % Outputs:  [r g b] = the average (median) pixel
     % Author:   Matt Moran
     
     % convert pixels to uint8 (they should be already)
