@@ -7,9 +7,16 @@ function [r, g, b] = MedianPixel(pixels)
     % convert pixels to uint8 (they should be already)
     pixels = uint8(pixels);
     
-    % calculate the median pixel, and split it into r, g, b components
-    % automatically rounded because it's an integer
-    result = median(pixels);
+    
+    % the median of one pixel is itself
+    if numel(pixels) == 3
+        result = pixels;
+    else
+        % calculate the median pixel, automatically rounded because it's an integer
+        result = median(pixels);
+    end
+	
+	% split it into r, g, b components
     r = result(1);
     g = result(2);
     b = result(3);
