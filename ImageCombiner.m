@@ -29,9 +29,9 @@ if strncmp(response,'m',1)
     end
     
     % Get the frame information from the user
-    firstFrame = 10;%input('Please enter the first frame you want to fetch:');
-    stepSize = 20;%input('Please enter the step size you want to use:');
-    numFrames = 5;%input('Please enter the number of frames to fetch:');
+    firstFrame = input('Please enter the first frame you want to fetch:');
+    stepSize = input('Please enter the step size you want to use:');
+    numFrames = input('Please enter the number of frames to fetch:');
     
     % Generate the list of frames to extract from the move
     % You will need to implement GenerateFrameList
