@@ -1,12 +1,13 @@
 function [r, g, b] = MedianPixel(pixels)
     % Finds the average (median) pixel from a stack of pixels
     % Input:    an array of pixels to process
-    % Outputs:  [r g b] = the average (median) pixel
+    % Outputs:  r - the red component of the average (median) pixel
+    %           g - the green component of the median pixel
+    %           b - the blue component of the median pixel
     % Author:   Matt Moran
     
     % convert pixels to uint8 (they should be already)
     pixels = uint8(pixels);
-    
     
     % the median of one pixel is itself
     if numel(pixels) == 3

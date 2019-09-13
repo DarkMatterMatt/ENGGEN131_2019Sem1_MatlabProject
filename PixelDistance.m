@@ -1,5 +1,5 @@
 function distance = PixelDistance(p, q)
-    % Calculates the distance between two pixels
+    % Calculates the squared distance between two pixels
     % Input:    p - a pixel to compare
     %           q - the other pixel to compare
     % Output:   the distance between the two pixels
@@ -13,4 +13,3 @@ function distance = PixelDistance(p, q)
     % d.*d is ~30% faster than d.^2 for this small array
     distance = sum(difference .* difference);
 end
-

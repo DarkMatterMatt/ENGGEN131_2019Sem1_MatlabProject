@@ -1,7 +1,9 @@
 function [r, g, b] = MostDistantPixel(pixels)
     % Finds the most distant (most different) pixel from a stack of pixels
     % Input:    an array of pixels to process
-    % Outputs:  [r g b] = the most distant (most different) pixel
+    % Outputs:  r - the red component of the most distant pixel
+    %           g - the green component of the most distant pixel
+    %           b - the blue component of the most distant pixel
     % Author:   Matt Moran
     
     % increase size of pixels from uint8 to int32 (we only need to double
@@ -15,8 +17,10 @@ function [r, g, b] = MostDistantPixel(pixels)
     % find the index of the most distant pixel
     [~, index] = max(distances);
     
-    % fetch the most distant pixel and split it into r, g, b components
-    mostDistantPixel = p(:, index, :);
+    % fetch the most distant pixel
+    mostDistantPixel = p(1, index, :);
+    
+    % split it into r, g, b components
     r = mostDistantPixel(1);
     g = mostDistantPixel(2);
     b = mostDistantPixel(3);

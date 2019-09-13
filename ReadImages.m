@@ -1,5 +1,5 @@
 function images = ReadImages(dirName, imageNames)
-    % Returns a cell array of all the images in the specified directory
+    % Returns a cell array of the opened images in the specified directory
     % Input:    dirName  - the name of the directory containing images
     %           imageNames - a cell array of image names to read
     % Output:   a cell array of images
@@ -15,6 +15,4 @@ function images = ReadImages(dirName, imageNames)
     for i = 1:length(imageNames)
         images{i} = imread(imagePaths{i});
     end
-
 end
-

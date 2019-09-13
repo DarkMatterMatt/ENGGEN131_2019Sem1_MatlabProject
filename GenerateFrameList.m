@@ -12,4 +12,3 @@ function frameNumbers = GenerateFrameList(firstFrame, stepSize, numFrames)
     % create a list using the colon operator
     frameNumbers = firstFrame:stepSize:lastFrame;
 end
-

@@ -33,7 +33,6 @@ function output = ActionShot(images)
         + reshape((0:2)*numPixels, 1, 1, []) ...
         + (indexes-1)*numPixels*3;
     
-    % combine 'most different' pixels from images
+    % select 'most different' pixels from images
     output = images(linearIndex);
 end
-

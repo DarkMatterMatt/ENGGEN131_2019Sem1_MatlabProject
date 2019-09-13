@@ -14,4 +14,3 @@ function imageNames = GenerateImageList(dirName, fileType)
     % extract names
     imageNames = { images.name };
 end
-
