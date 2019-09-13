@@ -5,21 +5,21 @@ function [r, g, b] = MostDistantPixel(pixels)
     %           g - the green component of the most distant pixel
     %           b - the blue component of the most distant pixel
     % Author:   Matt Moran
-    
+
     % increase size of pixels from uint8 to int32 (we only need to double
     %   size to uint16 but (p-m) could be negative, so use int32 instead)
     p = int32(pixels);
     m = median(p); % this implicitly rounds because it's an integer
-    
+
     % calculate the distances between each pixel and the median
     distances = sum((p-m).^2, 3);
-    
+
     % find the index of the most distant pixel
     [~, index] = max(distances);
-    
+
     % fetch the most distant pixel
     mostDistantPixel = p(1, index, :);
-    
+
     % split it into r, g, b components
     r = mostDistantPixel(1);
     g = mostDistantPixel(2);

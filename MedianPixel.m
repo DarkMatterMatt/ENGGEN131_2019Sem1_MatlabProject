@@ -5,10 +5,10 @@ function [r, g, b] = MedianPixel(pixels)
     %           g - the green component of the median pixel
     %           b - the blue component of the median pixel
     % Author:   Matt Moran
-    
+
     % convert pixels to uint8 (they should be already)
     pixels = uint8(pixels);
-    
+
     % the median of one pixel is itself
     if numel(pixels) == 3
         result = pixels;
@@ -16,8 +16,8 @@ function [r, g, b] = MedianPixel(pixels)
         % calculate the median pixel, automatically rounded because it's an integer
         result = median(pixels);
     end
-	
-	% split it into r, g, b components
+
+    % split it into r, g, b components
     r = result(1);
     g = result(2);
     b = result(3);

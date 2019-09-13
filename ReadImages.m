@@ -4,13 +4,13 @@ function images = ReadImages(dirName, imageNames)
     %           imageNames - a cell array of image names to read
     % Output:   a cell array of images
     % Author:   Matt Moran
-    
+
     % preallocate images cell array
     images = cell(1, length(imageNames));
-    
+
     % determine the image paths
     imagePaths = fullfile(dirName, imageNames);
-    
+
     % loop through all imageNames, opening each file
     for i = 1:length(imageNames)
         images{i} = imread(imagePaths{i});

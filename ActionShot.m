@@ -8,10 +8,10 @@ function output = ActionShot(images)
     %   [Y, X, RGB, N] where N is the image number
     images = cat(4, images{:});
     [numY, numX, ~, ~] = size(images);
-    
+
     % average matrix across the 4th dimension (stack of images)
     medianImage = median(images, 4);
-    
+
     % find 'most different (from median)' pixels in the stack of images
     % int32 to avoid overflow
     subtractedImages = int32(images) - int32(medianImage);
@@ -20,7 +20,7 @@ function output = ActionShot(images)
     distances = sum(subtractedImages .* subtractedImages, 3);
     % find indexes of 'most different' pixel
     [~, indexes] = max(distances, [], 4);
-    
+
     % convert 2D matrix index into linear index
     % https://stackoverflow.com/questions/57649949/indexing-a-4d-array-with-a-2d-matrix-of-indicies
     % line 40: creates a 2D array (for a 2x4 image, ans=[1 3 5 7; 2 4 6 8]
